@@ -68,7 +68,7 @@ require("lazy").setup({
 			"MunifTanjim/nui.nvim",
 		},
 		config = function()
-			vim.keymap.set('n', '<leader>t', ':Neotree toggle<CR>')
+			vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>')
 			vim.keymap.set('n', '<leader>w', '<C-w>w')
 			vim.keymap.set('n', '<leader>h', '<C-w>h')
 			vim.keymap.set('n', '<leader>j', '<C-w>j')
