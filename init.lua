@@ -74,6 +74,10 @@ require("lazy").setup({
 			vim.keymap.set('n', '<leader>j', '<C-w>j')
 			vim.keymap.set('n', '<leader>k', '<C-w>k')
 			vim.keymap.set('n', '<leader>l', '<C-w>l')
+
+			vim.keymap.set('n', '<leader>tn', vim.cmd.tabnext)
+			vim.keymap.set('n', '<leader>tp', vim.cmd.tabprevious)
+			vim.keymap.set('n', '<leader>tc', vim.cmd.tabclose)
 		end
 	},
 	{
@@ -243,6 +247,20 @@ require("lazy").setup({
 				open_mapping = '<leader>`'
 			}
 		end
-	}
+	},
+	{
+		'romgrk/barbar.nvim',
+		dependencies = {
+			'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+			'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+		},
+		init = function()
+			vim.g.barbar_auto_setup = false
 
+			vim.keymap.set('n', '<leader>bn', ':BufferNext<CR>') 
+			vim.keymap.set('n', '<leader>bp', ':BufferPrevious<CR>')
+			vim.keymap.set('n', '<leader>bc', ':BufferClose<CR>')
+		end,
+		opts = {},
+	},
 })
