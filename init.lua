@@ -243,9 +243,9 @@ require("lazy").setup({
 	{
 		'akinsho/toggleterm.nvim',
 		config = function()
-			require('toggleterm').setup {
-				open_mapping = '<leader>`'
-			}
+			local term = require 'toggleterm'
+			vim.keymap.set({ 'n', 't' }, '<C-`>', term.toggle)
+			vim.keymap.set({ 't' }, '<Esc>', '<C-\\><C-n>')
 		end
 	},
 	{
