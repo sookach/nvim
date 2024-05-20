@@ -78,6 +78,9 @@ require("lazy").setup({
 			vim.keymap.set('n', '<leader>tn', vim.cmd.tabnext)
 			vim.keymap.set('n', '<leader>tp', vim.cmd.tabprevious)
 			vim.keymap.set('n', '<leader>tc', vim.cmd.tabclose)
+
+			vim.keymap.set('n', '<leader>J', ':vertical resize +5<CR>')
+			vim.keymap.set('n', '<leader>K', ':vertical resize -5<CR>')
 		end
 	},
 	{
