@@ -257,10 +257,10 @@ require("lazy").setup({
 		init = function()
 			vim.g.barbar_auto_setup = false
 
-			vim.keymap.set('n', '<leader>bn', ':BufferNext<CR>') 
+			vim.keymap.set('n', '<leader>bn', ':BufferNext<CR>')
 			vim.keymap.set('n', '<leader>bp', ':BufferPrevious<CR>')
 			vim.keymap.set('n', '<leader>bc', ':BufferClose<CR>')
 		end,
 		opts = {},
-	},
+	}
 })
