@@ -1,22 +1,22 @@
 vim.g.mapleader = ' '
 vim.keymap.set('n', '<leader>T', vim.cmd.Ex)
 vim.opt.number = true
-vim.api.nvim_set_option("clipboard", "unnamed")
+vim.api.nvim_set_option('clipboard', 'unnamed')
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		'git',
+		'clone',
+		'--filter=blob:none',
+		'https://github.com/folke/lazy.nvim.git',
+		'--branch=stable', -- latest stable release
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+require 'lazy'.setup {
 	{
 		'folke/tokyonight.nvim',
 		priority = 1000,
@@ -28,32 +28,32 @@ require("lazy").setup({
 		'nvim-telescope/telescope.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		config = function()
-			local builtin = require('telescope.builtin')
-			vim.keymap.set('n', '<leader>sf', builtin.find_files, {})
-			vim.keymap.set('n', '<leader>sg', builtin.live_grep, {})
-			vim.keymap.set('n', '<leader>sb', builtin.buffers, {})
-			vim.keymap.set('n', '<leader>sh', builtin.help_tags, {})
+			local builtin = require 'telescope.builtin'
+			vim.keymap.set('n', '<leader>sf', builtin.find_files)
+			vim.keymap.set('n', '<leader>sg', builtin.live_grep)
+			vim.keymap.set('n', '<leader>sb', builtin.buffers)
+			vim.keymap.set('n', '<leader>sh', builtin.help_tags)
 		end
 	},
 	{
 		'nvim-telescope/telescope-ui-select.nvim',
 		config = function()
-			require("telescope").setup {
+			require 'telescope'.setup {
 				extensions = {
-					["ui-select"] = { require("telescope.themes").get_dropdown {} }
+					['ui-select'] = { require 'telescope.themes'.get_dropdown {} }
 				}
 			}
-			require("telescope").load_extension("ui-select")
+			require 'telescope'.load_extension('ui-select')
 		end
 	},
 	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
+		'nvim-treesitter/nvim-treesitter',
+		build = ':TSUpdate',
 		config = function()
-			local configs = require("nvim-treesitter.configs")
+			local configs = require 'nvim-treesitter.configs'
 
 			configs.setup {
-				ensure_installed = { "c", "cmake", "cpp", "llvm", "lua", "vim", "vimdoc", "query" },
+				ensure_installed = { 'c', 'cmake', 'cpp', 'llvm', 'lua', 'vim', 'vimdoc', 'query' },
 				sync_install = false,
 				highlight = { enable = true },
 				indent = { enable = true }
@@ -61,11 +61,11 @@ require("lazy").setup({
 		end
 	},
 	{
-		"nvim-neo-tree/neo-tree.nvim",
+		'nvim-neo-tree/neo-tree.nvim',
 		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-			"MunifTanjim/nui.nvim",
+			'nvim-lua/plenary.nvim',
+			'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+			'MunifTanjim/nui.nvim',
 		},
 		config = function()
 			vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>')
@@ -79,32 +79,34 @@ require("lazy").setup({
 			vim.keymap.set('n', '<leader>tp', vim.cmd.tabprevious)
 			vim.keymap.set('n', '<leader>tc', vim.cmd.tabclose)
 
-			vim.keymap.set('n', '<leader>J', ':vertical resize +5<CR>')
-			vim.keymap.set('n', '<leader>K', ':vertical resize -5<CR>')
+			vim.keymap.set('n', '<leader>+', ':vertical resize +5<CR>')
+			vim.keymap.set('n', '<leader>-', ':vertical resize -5<CR>')
 		end
 	},
 	{
 		'nvim-lualine/lualine.nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 		config = function()
-			require('lualine').setup { theme = 'dracula' }
+			require 'lualine'.setup { theme = 'dracula' }
 		end
 	},
 	{
-		"williamboman/mason.nvim",
+		'williamboman/mason.nvim',
 		config = function()
 			require('mason').setup {
+				path = 'prepend',
 				ensure_installed = {
 					'clangd',
-					'clang-format'
+					'clang-format',
+					'lua_ls'
 				}
 			}
 		end
 	},
 	{
-		"williamboman/mason-lspconfig.nvim",
+		'williamboman/mason-lspconfig.nvim',
 		config = function()
-			require('mason-lspconfig').setup {
+			require 'mason-lspconfig'.setup {
 				ensure_installed = {
 					'clangd',
 					'lua_ls'
@@ -115,13 +117,13 @@ require("lazy").setup({
 	{
 		'neovim/nvim-lspconfig',
 		config = function()
-			local lspconfig = require('lspconfig')
+			local lspconfig = require 'lspconfig'
 			lspconfig.lua_ls.setup {}
 			lspconfig.clangd.setup {}
-			vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
-			vim.keymap.set('n', '<leader>F', vim.lsp.buf.format, {})
-			vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-			vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
+			vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+			vim.keymap.set('n', '<leader>F', vim.lsp.buf.format)
+			vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+			vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action)
 		end
 	},
 	{
@@ -134,12 +136,12 @@ require("lazy").setup({
 		},
 		config = function()
 			local cmp = require 'cmp'
-			require("luasnip.loaders.from_vscode").lazy_load()
+			require 'luasnip.loaders.from_vscode'.lazy_load()
 
 			cmp.setup {
 				snippet = {
 					expand = function(args)
-						require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+						require 'luasnip'.lsp_expand(args.body) -- For `luasnip` users.
 					end,
 				},
 				window = {
@@ -162,16 +164,16 @@ require("lazy").setup({
 				}
 			}
 
-			require 'cmp'.setup {
+			cmp.setup {
 				sources = {
 					{ name = 'nvim_lsp' }
 				}
 			}
 
-			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+			local capabilities = require'cmp_nvim_lsp'.default_capabilities()
 
 			-- An example for configuring `clangd` LSP to use nvim-cmp as a completion engine
-			require('lspconfig').clangd.setup {
+			require'lspconfig'.clangd.setup {
 				capabilities = capabilities,
 			}
 		end
@@ -214,23 +216,23 @@ require("lazy").setup({
 
 			local clang_configs = {
 				{
-					name = "C++ Debug And Run",
-					type = "codelldb",
-					request = "launch",
+					name = 'C++ Debug And Run',
+					type = 'codelldb',
+					request = 'launch',
 					program = function()
 						-- First, check if exists CMakeLists.txt
 						local cwd = vim.fn.getcwd()
-						if file.exists(cwd, "CMakeLists.txt") then
+						if file.exists(cwd, 'CMakeLists.txt') then
 							-- Then invoke cmake commands
 							-- Then ask user to provide execute file
-							return vim.fn.input("Path to executable: ",
-								vim.fn.getcwd() .. "/", "file")
+							return vim.fn.input('Path to executable: ',
+								vim.fn.getcwd() .. '/', 'file')
 						end
 					end,
-					cwd = "${workspaceFolder}",
+					cwd = '${workspaceFolder}',
 					stopOnEntry = false,
 					runInTerminal = true,
-					console = "integratedTerminal",
+					console = 'integratedTerminal',
 				},
 			}
 		end
@@ -266,4 +268,4 @@ require("lazy").setup({
 		end,
 		opts = {},
 	}
-})
+}
