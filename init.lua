@@ -124,6 +124,8 @@ require 'lazy'.setup {
 			vim.keymap.set('n', '<leader>F', vim.lsp.buf.format)
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover)
 			vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action)
+			vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+			vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 		end
 	},
 	{
@@ -249,7 +251,7 @@ require 'lazy'.setup {
 		'akinsho/toggleterm.nvim',
 		config = function()
 			local term = require 'toggleterm'
-			vim.keymap.set({ 'n', 't' }, '<C-`>', term.toggle)
+			vim.keymap.set({ 'n', 't' }, '<leader>`', term.toggle)
 			vim.keymap.set({ 't' }, '<Esc>', '<C-\\><C-n>')
 		end
 	},
