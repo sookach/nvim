@@ -93,25 +93,13 @@ require 'lazy'.setup {
 	{
 		'williamboman/mason.nvim',
 		config = function()
-			require('mason').setup {
-				path = 'prepend',
-				ensure_installed = {
-					'clangd',
-					'clang-format',
-					'lua_ls'
-				}
-			}
+			require('mason').setup { path = 'prepend' }
 		end
 	},
 	{
 		'williamboman/mason-lspconfig.nvim',
 		config = function()
-			require 'mason-lspconfig'.setup {
-				ensure_installed = {
-					'clangd',
-					'lua_ls'
-				}
-			}
+			require 'mason-lspconfig'.setup {}
 		end
 	},
 	{
@@ -120,6 +108,7 @@ require 'lazy'.setup {
 			local lspconfig = require 'lspconfig'
 			lspconfig.lua_ls.setup {}
 			lspconfig.clangd.setup {}
+			lspconfig.cmake.setup {}
 			vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 			vim.keymap.set('n', '<leader>F', vim.lsp.buf.format)
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover)
@@ -172,10 +161,10 @@ require 'lazy'.setup {
 				}
 			}
 
-			local capabilities = require'cmp_nvim_lsp'.default_capabilities()
+			local capabilities = require 'cmp_nvim_lsp'.default_capabilities()
 
 			-- An example for configuring `clangd` LSP to use nvim-cmp as a completion engine
-			require'lspconfig'.clangd.setup {
+			require 'lspconfig'.clangd.setup {
 				capabilities = capabilities,
 			}
 		end
