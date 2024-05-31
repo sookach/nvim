@@ -240,7 +240,7 @@ require 'lazy'.setup {
 		'akinsho/toggleterm.nvim',
 		config = function()
 			local term = require 'toggleterm'
-			vim.keymap.set({ 'n', 't' }, '<leader>`', term.toggle)
+			vim.keymap.set({ 'n' }, '<leader>`', term.toggle)
 			vim.keymap.set({ 't' }, '<Esc>', '<C-\\><C-n>')
 		end
 	},
