@@ -20,7 +20,7 @@ require 'lazy'.setup {
 	{
 		'folke/tokyonight.nvim',
 		priority = 1000,
-		init = function()
+		config = function()
 			vim.cmd.colorscheme 'tokyonight-night'
 		end
 	},
@@ -93,7 +93,7 @@ require 'lazy'.setup {
 	{
 		'williamboman/mason.nvim',
 		config = function()
-			require('mason').setup { path = 'prepend' }
+			require 'mason'.setup { path = 'prepend' }
 		end
 	},
 	{
@@ -109,6 +109,7 @@ require 'lazy'.setup {
 			lspconfig.lua_ls.setup {}
 			lspconfig.clangd.setup {}
 			lspconfig.cmake.setup {}
+			lspconfig.marksman.setup {}
 			vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 			vim.keymap.set('n', '<leader>F', vim.lsp.buf.format)
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover)
@@ -168,73 +169,6 @@ require 'lazy'.setup {
 				capabilities = capabilities,
 			}
 		end
-	},
-	{
-		'mfussenegger/nvim-dap',
-		dependencies = {
-			'rcarriga/nvim-dap-ui',
-			'nvim-neotest/nvim-nio'
-		},
-		config = function()
-			local dap, dapui = require "dap", require "dapui"
-
-			dapui.setup()
-
-			vim.keymap.set('n', '<leader>d;', dap.toggle_breakpoint)
-			vim.keymap.set('n', '<leader>df', dap.continue)
-			vim.keymap.set('n', '<leader>dj', dap.step_over)
-			vim.keymap.set('n', '<leader>dk', dap.step_into)
-			vim.keymap.set('n', '<leader>dl', dap.step_out)
-
-			dap.listeners.before.attach.dapui_config = function()
-				dapui.open()
-			end
-			dap.listeners.before.launch.dapui_config = function()
-				dapui.open()
-			end
-			dap.listeners.before.event_terminated.dapui_config = function()
-				dapui.close()
-			end
-			dap.listeners.before.event_exited.dapui_config = function()
-				dapui.close()
-			end
-
-			dap.adapters.lldb = {
-				type = 'executable',
-				command = '/usr/bin/lldb-vscode', -- adjust as needed, must be absolute path
-				name = 'lldb'
-			}
-
-			local clang_configs = {
-				{
-					name = 'C++ Debug And Run',
-					type = 'codelldb',
-					request = 'launch',
-					program = function()
-						-- First, check if exists CMakeLists.txt
-						local cwd = vim.fn.getcwd()
-						if file.exists(cwd, 'CMakeLists.txt') then
-							-- Then invoke cmake commands
-							-- Then ask user to provide execute file
-							return vim.fn.input('Path to executable: ',
-								vim.fn.getcwd() .. '/', 'file')
-						end
-					end,
-					cwd = '${workspaceFolder}',
-					stopOnEntry = false,
-					runInTerminal = true,
-					console = 'integratedTerminal',
-				},
-			}
-		end
-	},
-	{
-		'akinsho/bufferline.nvim',
-		dependencies = 'nvim-tree/nvim-web-devicons',
-		--		config = function()
-		--			vim.opt.termguicolors = true
-		--			require("bufferline").setup {}
-		--		end
 	},
 	{
 		'akinsho/toggleterm.nvim',
