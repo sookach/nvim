@@ -53,7 +53,7 @@ require 'lazy'.setup {
 			local configs = require 'nvim-treesitter.configs'
 
 			configs.setup {
-				ensure_installed = { 'c', 'cmake', 'cpp', 'llvm', 'lua', 'vim', 'vimdoc', 'query' },
+				ensure_installed = { 'c', 'cmake', 'cpp', 'llvm', 'lua', 'markdown', 'vim', 'vimdoc', 'query' },
 				sync_install = false,
 				highlight = { enable = true },
 				indent = { enable = true }
@@ -109,7 +109,6 @@ require 'lazy'.setup {
 			lspconfig.lua_ls.setup {}
 			lspconfig.clangd.setup {}
 			lspconfig.cmake.setup {}
-			lspconfig.marksman.setup {}
 			vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 			vim.keymap.set('n', '<leader>F', vim.lsp.buf.format)
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover)
