@@ -111,7 +111,7 @@ require 'lazy'.setup {
 			lspconfig.cmake.setup {}
 			vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 			vim.keymap.set('n', '<leader>F', vim.lsp.buf.format)
-			vim.keymap.set('v', '<Leader>1f', vim.lsp.buf.format, bufopts)
+			vim.keymap.set('v', '<leader>\'f', vim.lsp.buf.format, bufopts)
 			vim.keymap.set('n', 'K', vim.lsp.buf.hover)
 			vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action)
 			vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
