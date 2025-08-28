@@ -1,3 +1,4 @@
-vim.g.editorconfig = true
-vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+require("global-script")
+require("basic")
+require("options-script")
+require("config.lazy")
