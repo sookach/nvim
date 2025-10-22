@@ -1,4 +1,8 @@
 return {
   'nvim-tree/nvim-tree.lua',
-  config = true
+  config = function()
+    require('nvim-tree').setup {
+      tab = { sync = { open = true, close = true } }
+    }
+  end
 }
