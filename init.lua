@@ -2,14 +2,21 @@ vim.opt.termguicolors = true
 vim.opt.nu = true
 vim.opt.rnu = true
 
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.expandtab = true
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set({ 'n', 'v' }, '<leader>lf', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>lg', vim.lsp.buf.definition)
 vim.keymap.set('n', '<leader>lc', vim.lsp.buf.code_action)
+vim.keymap.set('n', '<c-w>u', '<cmd>tabprevious<cr>')
+vim.keymap.set('n', '<c-w>i', '<cmd>tabnext<cr>')
 
 require("config.lazy")
 
 vim.lsp.enable('luals')
 vim.lsp.enable('clangd')
+vim.lsp.enable('nixd')
