@@ -1,6 +1,7 @@
 vim.opt.termguicolors = true
 vim.opt.nu = true
 vim.opt.rnu = true
+vim.opt.clipboard = "unnamedplus"
 
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
