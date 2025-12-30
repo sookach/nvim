@@ -10,7 +10,13 @@ vim.opt.expandtab = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.keymap.set({ 'n', 'v' }, '<leader>lf', vim.lsp.buf.format)
+vim.keymap.set({ 'n', 'v' }, '<leader>lf', function()
+  if vim.bo.filetype == "python" then
+    require("conform").format()
+  else
+    vim.lsp.buf.format()
+  end
+end)
 vim.keymap.set('n', '<leader>lg', vim.lsp.buf.definition)
 vim.keymap.set('n', '<leader>lc', vim.lsp.buf.code_action)
 vim.keymap.set('n', '<c-w>u', '<cmd>tabprevious<cr>')
@@ -21,3 +27,4 @@ require("config.lazy")
 vim.lsp.enable('luals')
 vim.lsp.enable('clangd')
 vim.lsp.enable('nixd')
+vim.lsp.enable('zuban')
