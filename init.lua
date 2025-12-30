@@ -11,7 +11,11 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set({ 'n', 'v' }, '<leader>lf', function()
-  if vim.bo.filetype == "python" then
+  local conform_filetypes = {
+    python = true,
+    sh = true,
+  }
+  if conform_filetypes[vim.bo.filetype] then
     require("conform").format()
   else
     vim.lsp.buf.format()
