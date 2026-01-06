@@ -23,6 +23,7 @@ vim.keymap.set({ 'n', 'v' }, '<leader>lf', function()
 end)
 vim.keymap.set('n', '<leader>lg', vim.lsp.buf.definition)
 vim.keymap.set('n', '<leader>lc', vim.lsp.buf.code_action)
+vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover)
 vim.keymap.set('n', '<c-w>u', '<cmd>tabprevious<cr>')
 vim.keymap.set('n', '<c-w>i', '<cmd>tabnext<cr>')
 
