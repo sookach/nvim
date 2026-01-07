@@ -10,7 +10,7 @@ vim.opt.expandtab = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.keymap.set({ 'n', 'v' }, '<leader>lf', function()
+vim.keymap.set({ 'n', 'v' }, 'gf', function()
   local conform_filetypes = {
     python = true,
     sh = true,
@@ -21,9 +21,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>lf', function()
     vim.lsp.buf.format()
   end
 end)
-vim.keymap.set('n', '<leader>lg', vim.lsp.buf.definition)
-vim.keymap.set('n', '<leader>lc', vim.lsp.buf.code_action)
-vim.keymap.set('n', '<leader>lh', vim.lsp.buf.hover)
+vim.keymap.set('n', 'grd', vim.lsp.buf.declaration)
+vim.keymap.set('n', 'grf', vim.lsp.buf.definition)
 vim.keymap.set('n', '<c-w>u', '<cmd>tabprevious<cr>')
 vim.keymap.set('n', '<c-w>i', '<cmd>tabnext<cr>')
 
